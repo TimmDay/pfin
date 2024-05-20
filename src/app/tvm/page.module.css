@@ -1,0 +1,53 @@
+.tvmWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 8px;
+  min-width: 200px;
+}
+
+.tvmInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 8px;
+}
+
+.absolute {
+  position: absolute;
+  top: -24px;
+  right: -36px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white; */
+}
+.tvmCpt {
+  color: red;
+}
+
+.userInputs {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding: 8px;
+}
+
+.userInputsExtra {
+  display: flex;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}

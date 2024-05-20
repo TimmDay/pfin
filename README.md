@@ -1,20 +1,23 @@
+TODO:
+
+- mnimalise design. Maybe don't use Tippy (not a11y anyway).
+- instead use "asterisk links" that lead to a glossary further down the page
+- use this? or too big?
+  // "react-mathjax2": "^0.0.2"
+- g. nominal vs real rate. risk-free rate
+- default risk premium
+- liquidity premium
+- maturity premium (higher the longer the investment)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

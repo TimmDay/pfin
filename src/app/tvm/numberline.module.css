@@ -1,0 +1,45 @@
+.numberLineContainer {
+  width: 600px;
+  position: relative;
+}
+
+.numberLine {
+  height: 2px;
+  background: black;
+  position: relative;
+  top: 0px;
+}
+
+.tickAtTimeN {
+  position: absolute;
+  text-align: center;
+  width: 1em;
+  margin-left: -0.5em;
+}
+
+.numberTick {
+  height: 10px;
+  width: 2px;
+  background: black;
+  position: absolute;
+  left: 7px;
+  top: -8px;
+}
+
+.numberTickLine {
+  height: 10px;
+  width: 2px;
+  background: black;
+}
+
+.pvPositive {
+  position: absolute;
+  color: green;
+  top: -40px;
+}
+
+.pvNegative {
+  position: absolute;
+  color: red;
+  top: 24px;
+}

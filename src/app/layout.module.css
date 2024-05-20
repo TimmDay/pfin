@@ -1,0 +1,36 @@
+.main {
+  margin: 0;
+}
+.nav {
+  padding: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  background-color: var(--color-contrast);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+}
+.nav a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.content {
+  padding-inline: 48px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  margin-right: 48px;
+}
+.logo div:first-child {
+  font-size: var(--heading-2);
+  text-decoration: line-through;
+  color: var(--color-primary);
+}
+.logo div:last-child {
+  font-size: var(--heading-1);
+  font-family: var(--font-emphasis);
+  color: var(--color-primary);
+}
