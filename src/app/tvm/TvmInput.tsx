@@ -1,18 +1,18 @@
-import { InfoTippy } from "@/components/Tippy/InfoTippy";
-import React, { ChangeEvent } from "react";
-import { capitaliseString } from "../utils";
-import styles from "./page.module.css";
+import { InfoTippy } from "@/components/Tippy/InfoTippy"
+import React, { ChangeEvent } from "react"
+import { capitaliseString } from "../utils/utils-formatters"
+import styles from "./page.module.css"
 
 type Props = {
-  id: string;
-  title: string;
-  value: number;
-  onChange: (value: ChangeEvent<HTMLInputElement>) => void;
-  selected: boolean;
-  result: string | number;
-  onCompute?: () => void;
-  isTippy?: React.ReactNode;
-};
+  id: string
+  title: string
+  value: number
+  onChange: (value: ChangeEvent<HTMLInputElement>) => void
+  selected: boolean
+  result: string | number
+  onCompute?: () => void
+  isTippy?: React.ReactNode
+}
 
 export function TvmInput({
   id,
@@ -57,5 +57,5 @@ export function TvmInput({
         </button>
       ) : null}
     </div>
-  );
+  )
 }

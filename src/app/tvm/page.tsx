@@ -2,16 +2,17 @@
 
 import { useState } from "react"
 import {
-  annualRateFromEAR,
+  formatCurrency,
+  formatYearsToHumanReadable,
+} from "../utils/utils-formatters"
+import {
   computeFutureValue,
   computeN,
   computePMT,
   computePresentValue,
   computeR,
   continuousCompoundingFV,
-  formatCurrency,
-  formatYearsToHumanReadable,
-} from "../utils"
+} from "../utils/utils-tvm"
 import { NumberLine } from "./NumberLine"
 import { TvmInput } from "./TvmInput"
 import styles from "./page.module.css"
@@ -25,10 +26,10 @@ export default function Home() {
   const [r, setR] = useState(0)
   const [pmt, setPmt] = useState(0)
   const [m, setM] = useState(1)
+  const [d, setD] = useState(false) // isAnnuityDue
+
   const [compute, setCompute] = useState<ComputeType>("fv")
 
-  const cptFv =
-    pv && n && `FV: ${formatCurrency(computeFutureValue({ pv, r, n, pmt, m }))}`
   const cptPv =
     fv && n && `PV ${formatCurrency(computePresentValue({ fv, r, n, pmt }))}`
   const cptN =
@@ -58,7 +59,9 @@ export default function Home() {
           value={fv}
           onChange={(e: any) => setFv(parseFloat(e.target.value))}
           selected={compute === "fv"}
-          result={cptFv}
+          result={`FV: ${formatCurrency(
+            computeFutureValue({ pv, r, n, pmt, m, d })
+          )}`}
           onCompute={() => setCompute("fv")}
         />
 
@@ -101,9 +104,6 @@ export default function Home() {
         />
       </div>
 
-      {/* expect 5% */}
-      <div>{annualRateFromEAR({ ear: 0.0509, m: 4 })}</div>
-
       <div className={styles.userInputsExtra}>
         <div className={styles.tvmWrapper}></div>
         <div className={styles.tvmWrapper}></div>
@@ -118,7 +118,15 @@ export default function Home() {
             onCompute={undefined}
           />
         </div>
-        <div className={styles.tvmWrapper}></div>
+        <div className={styles.tvmWrapper}>
+          <input
+            id="annuityDue"
+            type="checkbox"
+            checked={d}
+            onChange={(e: any) => setD(e.target.checked)}
+          />
+          <label htmlFor="annuityDue">annuityDue</label>
+        </div>
         <div className={styles.tvmWrapper}>irregular cash flow</div>
       </div>
 

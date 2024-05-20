@@ -1,49 +1,17 @@
-// prettier-ignore
-// Format Functions
-export function formatCurrency(value: number) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(value)
-}
-
-export function formatYearsToHumanReadable(
-  yearsDecimal: number,
-  incExact?: boolean
-) {
-  const AVG_DAYS_IN_YEAR = 365.25 // Considering leap years.
-  const AVG_DAYS_IN_MONTH = 30.44
-  const totalDays = Math.floor(yearsDecimal * AVG_DAYS_IN_YEAR)
-  const years = Math.floor(totalDays / AVG_DAYS_IN_YEAR)
-  const remainingDaysAfterYears = totalDays % AVG_DAYS_IN_YEAR
-  const months = Math.floor(remainingDaysAfterYears / AVG_DAYS_IN_MONTH)
-  const days = Math.floor(remainingDaysAfterYears % AVG_DAYS_IN_MONTH) // Remaining days.
-  return `${years} years, ${months} months, ${days} days${
-    incExact ? `\n or ${yearsDecimal.toFixed(4)}` : ""
-  }`
-}
-
-export function capitaliseString(string: string) {
-  return string
-    .split(" ")
-    .map((word) =>
-      word.length >= 3 ? word.charAt(0).toUpperCase() + word.slice(1) : word
-    )
-    .join(" ")
-}
-
-// TMV Formulae
-export function computeFutureValue({ pv, r, n, pmt = 0, m = 1 }: { pv: number, r: number, n: number, pmt?: number, m?: number }) {
-    if (r < 0 || n < 0 || m < 0) throw new Error('value cannot be negative')
+export function computeFutureValue({ pv, r, n, pmt = 0, m = 1, d = false }: { pv: number, r: number, n: number, pmt?: number, m?: number, d?: boolean }) {
+    if (n < 0 || m < 0) throw new Error('value cannot be negative')
     const periods = n * m
-    const rate = r < 1 ? r / m : r / 100 / m
-    return pv * Math.pow(1 + rate, periods) + pmt * ((Math.pow(1 + rate, periods) - 1) / rate)
+    const rate = r / 100 / m
+    const fv = pv * Math.pow(1 + rate, periods) + pmt * ((Math.pow(1 + rate, periods) - 1) / rate)
+    // annuity due or ordinary annuity.
+    return d ? fv * (1 + rate) : fv 
 }
 
 export function computePresentValue({ fv, r, n, pmt = 0, m = 1 }: { fv: number, r: number, n: number, pmt?: number, m?: number }) {
-    if (r < 0 || n < 0 || m < 0) throw new Error('value cannot be negative')
+    if (n < 0 || m < 0) throw new Error('value cannot be negative')
     const periods = n * m
-    const rate = r < 1 ? r / m : r / 100 / m
+    const rate = r / 100 / m
+    // const rate = r < 1 ? r / m : r / 100 / m
     return fv / Math.pow(1 + rate, periods) - pmt * ((Math.pow(1 + rate, periods) - 1) / rate)
 }
 
@@ -73,13 +41,13 @@ export function effectiveAnnualRate({ r, m }: { r: number, m: number }) {
 
 /**
  * Calculates the annual rate from the effective annual rate (EAR).
- *
+
  * @param params.ear - The effective annual rate.
  * @param params.m - The number of compounding periods per year.
  * @returns The annual rate.
  */
 export function annualRateFromEAR({ ear, m }: { ear: number, m: number }) {
-  return m * (Math.pow(1 + ear, 1/m) - 1)
+  return m * (Math.pow(1 + ear/100, 1/m) - 1)
 }
 
 // regular payments that increase at rate g.
