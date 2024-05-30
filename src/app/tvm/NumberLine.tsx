@@ -1,16 +1,17 @@
-import styles from "./numberline.module.css";
+import styles from "./numberline.module.css"
 
 type NumberLineProps = {
-  n: number;
-  pv?: number;
-};
+  n: number
+  pv?: number
+}
 
 export function NumberLine({ n, pv }: NumberLineProps) {
   // Generate an array of numbers from 1 to n
-  const numbers = Array.from({ length: n + 1 }, (_, i) => i);
+  const numbers = Array.from({ length: n + 1 }, (_, i) => i)
 
   return (
     <div className={styles.numberLineContainer}>
+      <p>testing github vsc plugin</p>
       <div className={styles.numberLine} />
       {numbers.map((number) => (
         <div
@@ -30,5 +31,5 @@ export function NumberLine({ n, pv }: NumberLineProps) {
         </div>
       ))}
     </div>
-  );
+  )
 }
